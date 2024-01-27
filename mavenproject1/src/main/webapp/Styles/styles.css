@@ -32,7 +32,7 @@ a{
     justify-content: center;
     margin-top: 3em;
 }
-.input-container{
+.input-container, .create-account-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -66,8 +66,27 @@ a{
     max-width: 100%;
     margin: 0 20px;
 }
-.footer{
-    background-color: black;
-    height:50px;
-    width:100%;
+
+.create-account-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns */
+    gap: 10px; 
+    max-width: 400px; 
+    margin: 0 auto; 
+    align-items: center;
+}
+
+.create-account-container label {
+    text-align: right;
+}
+
+.create-account-container input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.create-button{
+    display:flex;
+    justify-content: center;
 }
