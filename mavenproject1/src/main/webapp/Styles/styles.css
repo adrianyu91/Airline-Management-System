@@ -1,0 +1,73 @@
+* {
+    margin: 0px; 
+    padding: 0px; 
+    box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: Poppins-Regular, sans-serif;
+}
+
+a{
+    color: inherit;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+   
+    background-color:background;
+}
+
+.login-title{
+    display:flex;
+    font-family: Poppins-Bold;
+    font-size: 20px;
+    text-align: center;
+    
+    width: 100%;
+    justify-content: center;
+    margin-top: 3em;
+}
+.input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 4em;
+}
+.input-text{
+  font-family: Poppins-Medium;
+  font-size: 15px;
+  line-height: 1.5;
+
+  display: flex;
+  width: 200px;
+  align-content: center;
+  justify-content: center;
+  margin:5px 0px;
+}
+.create-account-link{
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.flight-container{
+    display: flex;
+    justify-content: center;
+}
+
+.flight-container a{
+    text-align: center;
+    max-width: 100%;
+    margin: 0 20px;
+}
+.footer{
+    background-color: black;
+    height:50px;
+    width:100%;
+}
