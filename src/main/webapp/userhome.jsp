@@ -15,11 +15,11 @@
 <%ArrayList<Flight> bookedFlights = (ArrayList)request.getAttribute("bookedFlights");%>
     <center>
         <h3>Welcome, <%=session.getAttribute("fname")%>!</h3>
-        <a href="newaccount.html">Edit user details</a>
+        <!--<a href="account">Edit user details</a>-->
         <br>
-        <a href="newaccount.html">Search Flights</a>
+        <a href="FlightSearch">Search Flights</a>
         <br>
-        <a href="flightstatus.jsp">Check Flight Status</a>
+        <a href="FlightStatus">Check Flight Status</a>
         <%
             if (bookedFlights.isEmpty()){
         %>
@@ -29,7 +29,6 @@
         %>
         <br>
         <h4>Booked Flights</h4>
-        <form action=Extend" method=post">
             <table border="2" align="center" cellpadding="5" cellspacing="5">
                 <tr>
                     <th>Date</th>
@@ -51,7 +50,6 @@
                         <% } %>
                     </tr>
             </table>
-        </form>
                     <%}%>
     </center>
     </body>

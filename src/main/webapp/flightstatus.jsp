@@ -12,11 +12,9 @@
         <title>Flight Status</title>
     </head>
     <body>
-        <%ArrayList<Flight> flightResults = new ArrayList<>(); // will be replaced with sql call
-        flightResults.add(new Flight(1, "CYYZ", "CYYC", new Aircraft("B737", 150), 1706633079, 240));
-        flightResults.add(new Flight(2, "CYHM", "CYPQ", new Aircraft("B777", 300), 1706633132, 37));
-        
-        %>
+        <% 
+            FlightsPrototype flts = FlightsPrototype.getInstance();
+%>
     <center>
         <h1>Flight Status</h1>
         <form action=Extend" method=post">
@@ -30,7 +28,7 @@
                     <th>Destination</th>
                     <th>Status</th>
                 </tr> 
-                <% for(Flight flight:flightResults){
+                <% for(Flight flight:flts.getFlights()){
                     %>
                     <tr>
                         <td><%=flight.getDate()%></td>

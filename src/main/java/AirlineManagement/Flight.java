@@ -11,25 +11,36 @@ import java.text.SimpleDateFormat;
  * @author student
  */
 public class Flight {
-    String origin, destination;
-    Aircraft aircraft;
-    int seatsAvailable;
-    int flightNumber;
-    long departureTime;
-    int flightDuration;
-    int flightStatus;
+    private String origin, destination;
+    private Aircraft aircraft;
+    private int seatsAvailable;
+    private int flightNumber;
+    private long departureTime;
+    private int flightDuration;
+    private int flightStatus;
+    private int id;
     
     public Flight()
     {}
-    public Flight(int number, String origin, String destination, Aircraft aircraft, long departureTime, int flightDuration) {
+    public Flight(int id, int number, String origin, String destination, Aircraft aircraft, long departureTime, int flightDuration) {
+        this.id = id;
         this.flightNumber = number;
         this.origin = origin;
         this.destination = destination;
         this.aircraft = aircraft;
         this.departureTime = departureTime;
         this.flightDuration = flightDuration;
+        this.seatsAvailable = 3; // for testing
+        this.flightStatus = 0;
+    }
+    public boolean isAvailable(){
+        return (getRemainingSeats() > 0);
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public int getOccupiedSeats() {
         return aircraft.max_seats - this.seatsAvailable;
     }
@@ -40,7 +51,10 @@ public class Flight {
     public int getFlightStatus() {
         return flightStatus;
     }
-    
+    // just for testing
+    public void bookSeat(){
+        this.seatsAvailable -=1;
+    }
     public String getFlightStatusString()
     {
         switch (this.flightStatus)

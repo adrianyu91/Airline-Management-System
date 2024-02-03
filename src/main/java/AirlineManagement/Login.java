@@ -22,33 +22,6 @@ import javax.servlet.RequestDispatcher;
 public class Login extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
@@ -59,7 +32,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -84,6 +57,7 @@ public class Login extends HttpServlet {
         }
         else{
             request.getSession().setAttribute("fname", uinfo.firstName);
+            request.getSession().setAttribute("isLoggedin", true);
             request.setAttribute("bookedFlights", uinfo.getBookedFlights());
             
             RequestDispatcher rd= request.getRequestDispatcher("userhome.jsp");
@@ -94,6 +68,8 @@ public class Login extends HttpServlet {
     
     private User getUser(String username, String password)
     {
+        FlightsPrototype flts = FlightsPrototype.getInstance();
+        
         //Return sample data
         User u;
         switch (username.toLowerCase()) {
@@ -102,8 +78,8 @@ public class Login extends HttpServlet {
                 break;
             case "jane":
                 u = new User("jane", "password", "jane@emailprovider.ca","1991-02-02","Jane", "Juniper", "Jenkins", "Canadian");
-                u.addFlight(new Flight(1, "CYYZ", "CYYC", new Aircraft("B737", 150), 1706633079, 240));
-                u.addFlight(new Flight(2, "CYHM", "CYPQ", new Aircraft("B777", 300), 1706633132, 37));
+                u.addFlight(flts.getFlights().get(0));
+                u.addFlight(flts.getFlights().get(1));
                 break;
             default:
                 u = new User("kelly", "password", "kelly@emailprovider.ca","1992-03-03","Kelly", "Katie", "Jenkins", "Canadian");
@@ -111,15 +87,5 @@ public class Login extends HttpServlet {
         }
         return u;
     }
-    
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

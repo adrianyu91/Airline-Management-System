@@ -4,9 +4,41 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>AirlineManagement.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>account</servlet-name>
+        <servlet-class>AirlineManagement.account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FlightStatus</servlet-name>
+        <servlet-class>AirlineManagement.FlightStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FlightSearch</servlet-name>
+        <servlet-class>AirlineManagement.FlightSearch</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookFlight</servlet-name>
+        <servlet-class>AirlineManagement.BookFlight</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>account</servlet-name>
+        <url-pattern>/account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FlightStatus</servlet-name>
+        <url-pattern>/FlightStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FlightSearch</servlet-name>
+        <url-pattern>/FlightSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookFlight</servlet-name>
+        <url-pattern>/BookFlight</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
