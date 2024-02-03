@@ -6,6 +6,7 @@
 package AirlineManagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -25,16 +26,15 @@ public class User {
         this.citizenship = citizenship;
     }
     
-    ArrayList<Flight> flights = new ArrayList<>();
-
+    ArrayList<Flight> bookedFlights = new ArrayList<>();
     public void addFlight(Flight flight){
         
-        flights.add(flight);
+        bookedFlights.add(flight);
         
     }
             
     public ArrayList<Flight> getBookedFlights()
     {
-        return flights;
+        return bookedFlights;
     }
 }

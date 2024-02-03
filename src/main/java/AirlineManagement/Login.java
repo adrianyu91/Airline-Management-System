@@ -84,9 +84,9 @@ public class Login extends HttpServlet {
         }
         else{
             request.getSession().setAttribute("fname", uinfo.firstName);
-            request.setAttribute("flightResults", uinfo.getBookedFlights());
+            request.setAttribute("bookedFlights", uinfo.getBookedFlights());
             
-            RequestDispatcher rd= request.getRequestDispatcher("flightsearch.jsp");
+            RequestDispatcher rd= request.getRequestDispatcher("userhome.jsp");
             rd.forward(request, response);
             
         }
@@ -94,13 +94,22 @@ public class Login extends HttpServlet {
     
     private User getUser(String username, String password)
     {
-        Aircraft a = new Aircraft("B737", 150);
-
-        User u = new User("john", "password", "john@emailprovider.ca","1990-01-01","John", "James", "Jenkins", "Canadian");
-        u.addFlight(new Flight("CYYZ", "CYYC", a, 1706633079, 240));
-        u.addFlight(new Flight("CYHM", "CYPQ", a, 1706633132, 37));
+        //Return sample data
+        User u;
+        switch (username.toLowerCase()) {
+            case "john":
+                u = new User("john", "password", "john@emailprovider.ca","1990-01-01","John", "James", "Jenkins", "Canadian");
+                break;
+            case "jane":
+                u = new User("jane", "password", "jane@emailprovider.ca","1991-02-02","Jane", "Juniper", "Jenkins", "Canadian");
+                u.addFlight(new Flight(1, "CYYZ", "CYYC", new Aircraft("B737", 150), 1706633079, 240));
+                u.addFlight(new Flight(2, "CYHM", "CYPQ", new Aircraft("B777", 300), 1706633132, 37));
+                break;
+            default:
+                u = new User("kelly", "password", "kelly@emailprovider.ca","1992-03-03","Kelly", "Katie", "Jenkins", "Canadian");
+                break;
+        }
         return u;
-        
     }
     
     /**

@@ -5,8 +5,7 @@
  */
 package AirlineManagement;
 
-import java.util.Date;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author student
@@ -14,13 +13,16 @@ import java.util.ArrayList;
 public class Flight {
     String origin, destination;
     Aircraft aircraft;
-    ArrayList<Passenger> passengers = new ArrayList<>();
+    int seatsAvailable;
+    int flightNumber;
     long departureTime;
     int flightDuration;
+    int flightStatus;
     
     public Flight()
     {}
-    public Flight(String origin, String destination, Aircraft aircraft, long departureTime, int flightDuration) {
+    public Flight(int number, String origin, String destination, Aircraft aircraft, long departureTime, int flightDuration) {
+        this.flightNumber = number;
         this.origin = origin;
         this.destination = destination;
         this.aircraft = aircraft;
@@ -29,26 +31,61 @@ public class Flight {
     }
 
     public int getOccupiedSeats() {
-        return passengers.size();
+        return aircraft.max_seats - this.seatsAvailable;
     }
     public int getRemainingSeats() {
-        return aircraft.getMax_seats() - getOccupiedSeats();
+        return this.seatsAvailable;
     }
 
+    public int getFlightStatus() {
+        return flightStatus;
+    }
+    
+    public String getFlightStatusString()
+    {
+        switch (this.flightStatus)
+        {
+            case 0:
+                return "On Time";
+            case 1:
+                return "Delayed";
+            case 2:
+                return "Cancelled";
+            default:
+                return "Error!";
+        }
+    }
+
+    public int getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(int flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+    
+    public void setFlightStatus(int flightStatus) {
+        this.flightStatus = flightStatus;
+    }
+
+    
     public String getOrigin() {
-        return origin;
+        return this.origin;
     }
 
     public long getDepartureTime() {
-        return departureTime;
+        return this.departureTime;
     }
-
+    public String getDate(){
+        return new SimpleDateFormat("yyyy-MM-dd").format((long)this.departureTime);
+    }
     public int getFlightDuration() {
-        return flightDuration;
+        return this.flightDuration;
     }
 
     public String getDestination() {
-        return destination;
+        return this.destination;
     }
   
 }
+

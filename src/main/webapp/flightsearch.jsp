@@ -19,7 +19,7 @@
     <center>
         <h1>Search for Flights</h1>
         <h3>Where would you like to go, <%=session.getAttribute("fname")%>?</h3>
-        <form action=""Extend" method=""post">
+        <form action=Extend" method=post">
             <table border="2" align="center" cellpadding="5" cellspacing="5">
                 <tr>
                     <th>Origin</th>
