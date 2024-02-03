@@ -20,7 +20,7 @@ public class Aircraft {
     public int getMax_seats() {
         return max_seats;
     }
-
+// test change
     public Aircraft() {
 
     }
