@@ -43,6 +43,7 @@ public class BookFlight extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Flight has been booked!</h1>");
             out.println("<a href=\"FlightSearch\">Return</a>");
+            out.println(request.getParameter("flightid"));
             out.println("</body>");
             out.println("</html>");
         }

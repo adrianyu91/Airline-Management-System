@@ -29,6 +29,7 @@
                     <th>Time</th>
                     <th>Duration</th>
                     <th>Available Seats</th>
+                    <th>Price</th>
                     <%if(session.getAttribute("isLoggedin") != null){%>
                     <th>Book</th>
                     <%}%>
@@ -42,6 +43,7 @@
                         <td> <%=flight.getDepartureTime()%></td>
                         <td> <%=flight.getFlightDuration()%></td>
                         <td> <%=flight.getRemainingSeats()%></td>
+                        <td> <%=String.format("$%.02f", flight.getPrice())%>
                         <%if(session.getAttribute("isLoggedin") != null){%>
                         <% if(flight.isAvailable()) { %>
                         <td> <input type="hidden" name="flightid" value="<%=flight.getId()%>">
