@@ -11,6 +11,7 @@ public class Flight {
     private int flightDuration;
     private int flightStatus;
     private int id;
+    private float price;
     
     public Flight()
     {}
@@ -24,6 +25,7 @@ public class Flight {
         this.flightDuration = flightDuration;
         this.seatsAvailable = 3; // for testing
         this.flightStatus = 0;
+        this.price = 100;
     }
     public boolean isAvailable(){
         return (getRemainingSeats() > 0);
@@ -31,6 +33,11 @@ public class Flight {
 
     public int getId() {
         return id;
+    }
+    
+    public float getPrice()
+    {
+        return this.price;
     }
     
     public int getOccupiedSeats() {
@@ -79,11 +86,11 @@ public class Flight {
         return this.origin;
     }
 
-    public long getDepartureTime() {
-        return this.departureTime;
+    public String getDepartureTime() {
+        return new SimpleDateFormat("HH:mm").format((long)this.departureTime*1000);
     }
     public String getDate(){
-        return new SimpleDateFormat("yyyy-MM-dd").format((long)this.departureTime);
+        return new SimpleDateFormat("yyyy-MM-dd").format((long)this.departureTime*1000);
     }
     public int getFlightDuration() {
         return this.flightDuration;
