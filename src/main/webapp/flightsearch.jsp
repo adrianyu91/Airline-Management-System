@@ -1,8 +1,3 @@
-<%-- 
-    Document   : flightsearch
-    Created on : Jan 30, 2024, 11:27:12 AM
-    Author     : student
---%>
 <%@page import="Helper.UserInfo"%>
 <%@page import="Helper.FlightInfo"%>
 <%@page import="java.util.ArrayList"%>

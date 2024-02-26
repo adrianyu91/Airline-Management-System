@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Persistence;
 
 import Helper.AirportInfo;
@@ -14,10 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
 
-/**
- *
- * @author student
- */
 public class province_CRUD {
     private static Connection getCon()
     {

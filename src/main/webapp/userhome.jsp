@@ -1,8 +1,3 @@
-<%-- 
-    Document   : userhome
-    Created on : Feb 3, 2024, 9:48:32 AM
-    Author     : student
---%>
 <%@page import="Helper.FlightInfo"%>
 <%@page import="Helper.UserInfo"%>
 <%@page import="java.util.ArrayList"%>

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : flightstatus
-    Created on : Feb 3, 2024, 9:43:41 AM
-    Author     : student
---%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import="AirlineManagement.*"%>
 <!DOCTYPE html>
