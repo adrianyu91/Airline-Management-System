@@ -1,31 +1,38 @@
-package AirlineManagement;
+package Business;
 
+import Helper.UserInfo;
+import Persistence.user_CRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BookFlight extends HttpServlet {
+public class CreateUser extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FlightsPrototype flts = FlightsPrototype.getInstance();
-        flts.getFlights().get(Integer.valueOf(request.getParameter("flightid"))).bookSeat();
-        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Book Flight</title>");            
+            out.println("<title>Servlet CreateUser</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Flight has been booked!</h1>");
-            out.println("<a href=\"FlightSearch\">Return</a>");
-            out.println(request.getParameter("flightid"));
+            out.println("<h1>Servlet CreateUser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +64,33 @@ public class BookFlight extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String useremail=(String) request.getParameter("email");
+        String password=(String) request.getParameter("password");
+        String dob=(String) request.getParameter("dob");
+        String nameFirst=(String) request.getParameter("firstName");
+        String nameMiddle=(String) request.getParameter("middleName");
+        String nameLast=(String) request.getParameter("lastName");
+        String citizenship=(String) request.getParameter("citizenship");
+        
+        
+        if (user_CRUD.userExisits(useremail))
+        {
+            System.out.println("User exists!");
+            RequestDispatcher rd= request.getRequestDispatcher("accountExists.html");
+            rd.forward(request, response);
+        }
+        else
+        {
+            System.out.println("New user!");
+            UserInfo user = new UserInfo(nameFirst, nameMiddle, nameLast, dob, citizenship, useremail, password, true);
+            user_CRUD.create(user);
+            request.getSession().setAttribute("userData", user);
+
+            RequestDispatcher rd= request.getRequestDispatcher("userhome.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
     /**

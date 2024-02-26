@@ -1,5 +1,9 @@
-package AirlineManagement;
+package Business;
 
+import AirlineManagement.FlightsPrototype;
+import Helper.UserInfo;
+import Persistence.flight_CRUD;
+import Persistence.user_CRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -8,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class FlightSearch extends HttpServlet {
+public class BookFlight extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -21,8 +25,27 @@ public class FlightSearch extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            RequestDispatcher rd= request.getRequestDispatcher("flightsearch.jsp");
-            rd.forward(request, response);
+        
+        UserInfo user = (UserInfo)request.getSession().getAttribute("userData");
+        user.bookedFlights.add(flight_CRUD.read(Integer.parseInt(request.getParameter("flightid"))));
+        flight_CRUD.read(Integer.parseInt(request.getParameter("flightid"))).bookSeat();
+
+        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Book Flight</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Flight has been booked!</h1>");
+            out.println("<a href=\"userhome.jsp\">Return</a>");
+            //out.println(request.getParameter("flightid"));
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

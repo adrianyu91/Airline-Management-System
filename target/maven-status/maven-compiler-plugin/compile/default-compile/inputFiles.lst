@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /home/student/Airline-Management-System/src/main/java/AirlineManagement/Employee.java
 /home/student/Airline-Management-System/src/main/java/AirlineManagement/FlightStatus.java
 /home/student/Airline-Management-System/src/main/java/AirlineManagement/Login.java
@@ -7,4 +8,26 @@
 /home/student/Airline-Management-System/src/main/java/AirlineManagement/Passenger.java
 /home/student/Airline-Management-System/src/main/java/AirlineManagement/Flight.java
 /home/student/Airline-Management-System/src/main/java/AirlineManagement/FlightSearch.java
+=======
+/home/student/Airline-Management-System/src/main/java/Helper/ProvinceInfo.java
+/home/student/Airline-Management-System/src/main/java/AirlineManagement/Employee.java
+/home/student/Airline-Management-System/src/main/java/Business/FlightSearch.java
+/home/student/Airline-Management-System/src/main/java/AirlineManagement/FlightStatus.java
+/home/student/Airline-Management-System/src/main/java/Helper/AirportInfo.java
+/home/student/Airline-Management-System/src/main/java/Helper/AircraftInfo.java
+/home/student/Airline-Management-System/src/main/java/Helper/FlightInfo.java
+/home/student/Airline-Management-System/src/main/java/Business/CreateUser.java
+/home/student/Airline-Management-System/src/main/java/Helper/UserInfo.java
+/home/student/Airline-Management-System/src/main/java/AirlineManagement/Flight.java
+/home/student/Airline-Management-System/src/main/java/Persistence/airport_CRUD.java
+/home/student/Airline-Management-System/src/main/java/Persistence/province_CRUD.java
+/home/student/Airline-Management-System/src/main/java/Business/Login.java
+/home/student/Airline-Management-System/src/main/java/Persistence/user_CRUD.java
+/home/student/Airline-Management-System/src/main/java/Persistence/flight_CRUD.java
+/home/student/Airline-Management-System/src/main/java/AirlineManagement/User.java
+/home/student/Airline-Management-System/src/main/java/AirlineManagement/FlightsPrototype.java
+/home/student/Airline-Management-System/src/main/java/Business/BookFlight.java
+/home/student/Airline-Management-System/src/main/java/AirlineManagement/Passenger.java
+/home/student/Airline-Management-System/src/main/java/Persistence/aircraft_CRUD.java
+>>>>>>> Lab3-dmc
 /home/student/Airline-Management-System/src/main/java/AirlineManagement/Aircraft.java

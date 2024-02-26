@@ -35,7 +35,7 @@ public class Flight {
         return id;
     }
     
-    public float getPrice()
+    public double getPrice()
     {
         return this.price;
     }

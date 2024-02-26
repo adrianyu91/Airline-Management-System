@@ -1,3 +1,5 @@
+<%@page import="Helper.UserInfo"%>
+<%@page import="Helper.FlightInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import="AirlineManagement.*"%>
 <!DOCTYPE html>
@@ -7,13 +9,14 @@
         <title>Flight Search</title>
     </head>
     <body>
-        <% 
-            FlightsPrototype flts = FlightsPrototype.getInstance();
+                <% 
+                    ArrayList<FlightInfo> flts = (ArrayList<FlightInfo>)session.getAttribute("flights");
+                    UserInfo uinfo = (UserInfo)session.getAttribute("userData");
 %>
     <center>
         <h1>Search for Flights</h1>
-        <h3><%if(session.getAttribute("isLoggedin") != null){%>
-            Where would you like to go, <%=session.getAttribute("fname")%>?
+        <h3><%if(uinfo != null){%>
+            Where would you like to go, <%=uinfo.nameFirst%>?
                 <%}else{%>Where would you like to go?<%}%></h3>
         <form action="BookFlight" method="post">
             <table border="2" align="center" cellpadding="5" cellspacing="5">
@@ -25,11 +28,11 @@
                     <th>Duration</th>
                     <th>Available Seats</th>
                     <th>Price</th>
-                    <%if(session.getAttribute("isLoggedin") != null){%>
+                    <%if(uinfo != null){%>
                     <th>Book</th>
                     <%}%>
                 </tr> 
-                <% for(Flight flight:flts.getFlights()){
+                <% for(FlightInfo flight:flts){
                     %>
                     <tr>
                         <td> <%=flight.getDate()%></td>
@@ -39,7 +42,7 @@
                         <td> <%=flight.getFlightDuration()%></td>
                         <td> <%=flight.getRemainingSeats()%></td>
                         <td> <%=String.format("$%.02f", flight.getPrice())%>
-                        <%if(session.getAttribute("isLoggedin") != null){%>
+                        <%if(uinfo != null){%>
                         <% if(flight.isAvailable()) { %>
                         <td> <input type="hidden" name="flightid" value="<%=flight.getId()%>">
                                     <input type="submit" value="Book Flight"></td>

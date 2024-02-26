@@ -1,6 +1,5 @@
 package AirlineManagement;
 
-
 public class Employee extends User{
     boolean isManager;
     
