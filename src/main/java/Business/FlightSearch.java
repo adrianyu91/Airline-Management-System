@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AirlineManagement;
+package Business;
 
+import Persistence.airport_CRUD;
+import Persistence.flight_CRUD;
+import Persistence.user_CRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -46,7 +49,25 @@ public class FlightSearch extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                
+        String origin=(String) request.getParameter("origin");
+        String destination=(String) request.getParameter("destination");
+        
+        
+        if ((airport_CRUD.read(origin) == null) || airport_CRUD.read(destination) == null)
+        {
+            System.out.println("invalid airport");
+            RequestDispatcher rd= request.getRequestDispatcher("nofly.html");
+            rd.forward(request, response);
+        }
+        else
+        {
+
+            request.getSession().setAttribute("flights", flight_CRUD.searchFlight(origin, destination));
+
+            RequestDispatcher rd= request.getRequestDispatcher("flightsearch.jsp");
+            rd.forward(request, response);
+        }
     }
 
     /**

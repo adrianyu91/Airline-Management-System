@@ -3,10 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AirlineManagement;
+package Business;
 
+import AirlineManagement.FlightsPrototype;
+import Helper.UserInfo;
+import Persistence.flight_CRUD;
+import Persistence.user_CRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +34,11 @@ public class BookFlight extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FlightsPrototype flts = FlightsPrototype.getInstance();
-        flts.getFlights().get(Integer.valueOf(request.getParameter("flightid"))).bookSeat();
+        
+        UserInfo user = (UserInfo)request.getSession().getAttribute("userData");
+        user.bookedFlights.add(flight_CRUD.read(Integer.parseInt(request.getParameter("flightid"))));
+        flight_CRUD.read(Integer.parseInt(request.getParameter("flightid"))).bookSeat();
+
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -42,8 +50,8 @@ public class BookFlight extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Flight has been booked!</h1>");
-            out.println("<a href=\"FlightSearch\">Return</a>");
-            out.println(request.getParameter("flightid"));
+            out.println("<a href=\"userhome.jsp\">Return</a>");
+            //out.println(request.getParameter("flightid"));
             out.println("</body>");
             out.println("</html>");
         }

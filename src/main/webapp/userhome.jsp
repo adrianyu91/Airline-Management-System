@@ -3,6 +3,8 @@
     Created on : Feb 3, 2024, 9:48:32 AM
     Author     : student
 --%>
+<%@page import="Helper.FlightInfo"%>
+<%@page import="Helper.UserInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" import="AirlineManagement.*"%>
 <!DOCTYPE html>
@@ -12,16 +14,20 @@
         <title>Home</title>
     </head>
     <body>
-<%ArrayList<Flight> bookedFlights = (ArrayList)request.getAttribute("bookedFlights");%>
+        <%UserInfo uinfo = (UserInfo)session.getAttribute("userData");%>
     <center>
-        <h3>Welcome, <%=session.getAttribute("fname")%>!</h3>
+        <h3>Welcome, <%=uinfo.nameFirst %>!</h3>
         <!--<a href="account">Edit user details</a>-->
         <br>
-        <a href="FlightSearch">Search Flights</a>
+        <form class="search-form" action="FlightSearch" method="get">
+            <input type="text" name="origin" placeholder="Origin" required>
+            <input type="text" name="destination" placeholder="Destination" required>
+            <input type="submit" value="Search for Flights">
+        </form>
         <br>
         <a href="FlightStatus">Check Flight Status</a>
         <%
-            if (bookedFlights.isEmpty()){
+            if (uinfo.bookedFlights.isEmpty()){
         %>
             <h4>Looks like you need a vacation!</h4>
         <%  }
@@ -38,7 +44,7 @@
                     <th>Destination</th>
                     <th>Check-in Status</th>
                 </tr> 
-                <% for(Flight flight:bookedFlights){
+                <% for(FlightInfo flight:uinfo.bookedFlights){
                     %>
                     <tr>
                         <td><%=flight.getDate()%></td>
